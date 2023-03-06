@@ -21,7 +21,7 @@ runs:
         ref: activity
         path: activity
     - name: Stage db.json
-      run: "[ -f ${{ github.workspace }}/activity/db.json ] || mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
+      run: "[ -f ${{ github.workspace }}/activity/db.json ] || mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json"
       shell: bash
     - name: Install dependencies
       run: npm install
