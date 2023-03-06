@@ -1,0 +1,45 @@
+name: Fetch activity
+description: Inventory user activity
+inputs:
+  org:
+    description: the github organization to audit
+  branch:
+    description: branch to store activity data on
+    default: main
+  APP_ID:
+    description: the app id
+  APP_PRIVATE_KEY:
+    description: the app private key
+  APP_INSTALLATION_ID:
+    description: the app installation id
+runs:
+  using: composite
+  steps: 
+    - uses: actions/checkout@v3
+      with:
+        path: main
+        repository: oss-tooling/user-inactivity
+        ref: actions
+    
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.branch }}
+        path: activity
+    
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{ github.workspace }}/main
+      shell: bash
+    
+    - name: Stage db.json
+        run: mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
+
+    - name: Collect Audit Log
+      run: node src/report.js
+      working-directory: ${{ github.workspace }}/main
+      shell: bash
+      env:
+        GH_APP_ID: ${{ inputs.APP_ID }}
+        GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
+        GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
+        ORG: ${{ inputs.org }}
