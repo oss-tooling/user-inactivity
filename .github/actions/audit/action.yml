@@ -3,7 +3,10 @@ description: Inventory user activity
 inputs:
   org:
     description: the github organization to audit
-  APP_ID: 
+  branch:
+    description: branch to store activity data on
+    default: main
+  APP_ID:
     description: the app id
   APP_PRIVATE_KEY:
     description: the app private key
@@ -12,31 +15,29 @@ inputs:
 runs:
   using: composite
   steps: 
-    - name: get token
-      id: get-token
-      uses: getsentry/action-github-app-token@v2
-      with:
-        app_id: ${{ inputs.APP_ID }}
-        private_key: ${{ inputs.APP_PRIVATE_KEY }}
     - uses: actions/checkout@v3
       with:
         path: main
         repository: oss-tooling/user-inactivity
         ref: actions
+    
     - uses: actions/checkout@v3
       with:
-        ref: activity
+        ref: ${{ inputs.branch }}
         path: activity
+    
     - name: Stage db.json
       run: |
         if test -f "${{ github.workspace }}/activity/db.json"; then 
           mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
         fi
       shell: bash
+    
     - name: Install dependencies
       run: npm install
       working-directory: ${{ github.workspace }}/main
       shell: bash
+    
     - name: Collect Audit Log
       run: node src/audit.js
       working-directory: ${{ github.workspace }}/main
@@ -46,10 +47,12 @@ runs:
         GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
         GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
         ORG: ${{ inputs.org }}
+    
     - name: Reconcile
       run: node src/reconcile.js
       working-directory: ${{ github.workspace }}/main
       shell: bash
+    
     - name: Update db.json
       run: |
         if test -f db.json; then 
