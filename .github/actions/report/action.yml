@@ -6,6 +6,9 @@ inputs:
   branch:
     description: branch to store activity data on
     default: main
+  repo:
+    description: name of repo to create issues in
+    
   APP_ID:
     description: the app id
   APP_PRIVATE_KEY:
@@ -44,3 +47,4 @@ runs:
         GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
         GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
         ORG: ${{ inputs.org }}
+        REPO: ${{ inputs.repo }}
