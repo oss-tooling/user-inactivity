@@ -1,5 +1,4 @@
 name: Fetch activity
-description: Fetches latest user activity via the audit log.
 
 on:
   workflow_dispatch:
