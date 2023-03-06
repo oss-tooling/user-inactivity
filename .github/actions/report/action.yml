@@ -32,7 +32,7 @@ runs:
       shell: bash
     
     - name: Stage db.json
-        run: mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
+      run: mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
 
     - name: Collect Audit Log
       run: node src/report.js
