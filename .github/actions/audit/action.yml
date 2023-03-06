@@ -3,11 +3,6 @@ description: Inventory user activity
 inputs:
   org:
     description: the github organization to audit
-  path:
-    description: The file path to the database
-    default: /tmp/db.json
-    required: false
-    type: string
   APP_ID: 
     description: the app id
   APP_PRIVATE_KEY:
@@ -42,7 +37,7 @@ runs:
       working-directory: ${{ github.workspace }}/main
       shell: bash
     - name: Collect Audit Log
-      run: node src/audit.js && mv db.json ${{ inputs.path }}
+      run: node src/audit.js
       working-directory: ${{ github.workspace }}/main
       shell: bash
       env:
