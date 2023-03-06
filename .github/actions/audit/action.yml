@@ -7,12 +7,20 @@ inputs:
     required: false
     type: string
 secrets:
-  token: 
-    description: Token used to execute next workflow
+  APP_ID: 
+    description: the app id
+  APP_PRIVATE_KEY:
+    description: the app private key
 
 runs:
   using: composite
   steps: 
+    - name: get token
+      id: get-token
+      uses: getsentry/action-github-app-token@v2
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
     - uses: actions/checkout@v3
       with:
         path: main
@@ -50,5 +58,5 @@ runs:
       run: gh workflow run --repo ${{ github.repository }} $WORKFLOW_FILENAME
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ inputs.DEVOPS_BOT_PAT }}
+        GITHUB_TOKEN: ${{ steps.get-token.outputs.token }}
         WORKFLOW_FILENAME: contributions.yml
