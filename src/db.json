@@ -1,0 +1,175 @@
+{
+  "users": {
+    "undefined": {
+      "lastUpdated": "2023-03-06T14:14:48.208Z",
+      "type": "git.fetch"
+    },
+    "jlloyd-va": {
+      "lastUpdated": "2023-03-06T14:11:41.866Z",
+      "type": "git.fetch"
+    },
+    "narasimhasirikonda": {
+      "lastUpdated": "2023-03-06T14:11:41.495Z",
+      "type": "git.fetch"
+    },
+    "va-bip-non-prod-ops": {
+      "lastUpdated": "2023-03-06T14:15:07.346Z",
+      "type": "git.fetch"
+    },
+    "kevingin9": {
+      "lastUpdated": "2023-03-06T14:14:28.512Z",
+      "type": "git.push"
+    },
+    "srinivasjuluri1229": {
+      "lastUpdated": "2023-03-06T14:15:01.197Z",
+      "type": "git.clone"
+    },
+    "va-cms-bot": {
+      "lastUpdated": "2023-03-06T14:13:28.216Z",
+      "type": "workflows.created_workflow_run"
+    },
+    "va-vsp-bot": {
+      "lastUpdated": "2023-03-06T14:15:15.257Z",
+      "type": "repo.register_self_hosted_runner"
+    },
+    "va-vfs-bot": {
+      "lastUpdated": "2023-03-06T14:14:48.184Z",
+      "type": "git.clone"
+    },
+    "pchatterjee2021": {
+      "lastUpdated": "2023-03-06T14:11:06.806Z",
+      "type": "git.fetch"
+    },
+    "cameronjacobson-va": {
+      "lastUpdated": "2023-03-06T14:09:49.349Z",
+      "type": "git.push"
+    },
+    "indytechcook": {
+      "lastUpdated": "2023-03-06T14:10:49.055Z",
+      "type": "workflows.created_workflow_run"
+    },
+    "Siddharth-Hari": {
+      "lastUpdated": "2023-03-06T14:14:48.504Z",
+      "type": "git.fetch"
+    },
+    "akpatel1": {
+      "lastUpdated": "2023-03-06T14:10:47.619Z",
+      "type": "git.fetch"
+    },
+    "cBenedick": {
+      "lastUpdated": "2023-03-06T14:12:48.465Z",
+      "type": "git.fetch"
+    },
+    "bipplatformengineering": {
+      "lastUpdated": "2023-03-06T14:14:43.150Z",
+      "type": "git.clone"
+    },
+    "github-actions": {
+      "bot": {
+        "lastUpdated": "2023-03-06T14:13:53.631Z",
+        "type": "git.clone"
+      }
+    },
+    "kellysmith1008": {
+      "lastUpdated": "2023-03-06T14:10:17.583Z",
+      "type": "workflows.created_workflow_run"
+    },
+    "olivereri": {
+      "lastUpdated": "2023-03-06T14:09:54.884Z",
+      "type": "workflows.created_workflow_run"
+    },
+    "Boberski": {
+      "lastUpdated": "2023-03-06T14:10:20.621Z",
+      "type": "project_field.create"
+    },
+    "timwright12": {
+      "lastUpdated": "2023-03-06T14:13:43.323Z",
+      "type": "workflows.completed_workflow_run"
+    },
+    "jbritt1": {
+      "lastUpdated": "2023-03-06T14:15:22.478Z",
+      "type": "workflows.completed_workflow_run"
+    },
+    "deploy_key": {
+      "lastUpdated": "2023-03-06T14:08:45.757Z",
+      "type": "git.clone"
+    },
+    "Curtis-Bolduc": {
+      "lastUpdated": "2023-03-06T14:09:25.939Z",
+      "type": "git.fetch"
+    },
+    "oleksii-morgun-va": {
+      "lastUpdated": "2023-03-06T14:09:21.004Z",
+      "type": "git.fetch"
+    },
+    "bip-runner": {
+      "bot": {
+        "lastUpdated": "2023-03-06T14:09:16.392Z",
+        "type": "repo.register_self_hosted_runner"
+      }
+    },
+    "dependabot": {
+      "bot": {
+        "lastUpdated": "2023-03-06T14:08:48.904Z",
+        "type": "git.clone"
+      }
+    },
+    "va-bot": {
+      "lastUpdated": "2023-03-06T14:12:35.709Z",
+      "type": "git.clone"
+    },
+    "mhv-jenkins": {
+      "bot": {
+        "lastUpdated": "2023-03-06T14:15:08.300Z",
+        "type": "git.clone"
+      }
+    },
+    "libertybot": {
+      "lastUpdated": "2023-03-06T14:15:05.298Z",
+      "type": "git.clone"
+    },
+    "JaeChangVA": {
+      "lastUpdated": "2023-03-06T14:14:42.502Z",
+      "type": "git.push"
+    },
+    "leon-matthews2": {
+      "lastUpdated": "2023-03-06T14:14:24.992Z",
+      "type": "git.fetch"
+    },
+    "DOTS-bot": {
+      "lastUpdated": "2023-03-06T14:14:17.846Z",
+      "type": "git.clone"
+    },
+    "Samara-Strauss": {
+      "lastUpdated": "2023-03-06T14:14:11.321Z",
+      "type": "workflows.created_workflow_run"
+    },
+    "michael-kur": {
+      "lastUpdated": "2023-03-06T14:13:43.458Z",
+      "type": "workflows.created_workflow_run"
+    },
+    "ndouglas": {
+      "lastUpdated": "2023-03-06T14:13:44.521Z",
+      "type": "git.fetch"
+    },
+    "Vethirix": {
+      "lastUpdated": "2023-03-06T14:13:43.369Z",
+      "type": "git.fetch"
+    },
+    "rmessina1010": {
+      "lastUpdated": "2023-03-06T14:13:42.604Z",
+      "type": "pull_request_review.submit"
+    },
+    "platform-support-slack-integration": {
+      "bot": {
+        "lastUpdated": "2023-03-06T14:13:09.583Z",
+        "type": "workflows.created_workflow_run"
+      }
+    },
+    "ArmstrongVD": {
+      "lastUpdated": "2023-03-06T14:13:01.466Z",
+      "type": "git.fetch"
+    }
+  },
+  "lastUpdated": ""
+}

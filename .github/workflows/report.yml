@@ -1,0 +1,28 @@
+name: Send User Inactivity Report
+
+on:
+  schedule:
+    - cron: "15 12 * * 0"
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    env:
+      GH_ADMIN_TOKEN: ${{ secrets.DEVOPS_BOT_PAT }}
+      ORG: ${{ github.repository_owner }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: main
+      - uses: actions/checkout@v2
+        with:
+          ref: activity
+          path: activity
+      - name: Stage db.json
+        run: mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{ github.workspace }}/main
+      - run: node src/report.js
+        working-directory: ${{ github.workspace }}/main
