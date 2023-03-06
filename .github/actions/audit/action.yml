@@ -52,7 +52,9 @@ runs:
         ORG: ${{ inputs.org }}
     - name: Update db.json
       run: |
-        rm -rf db.json
+        if test -f db.json; then 
+          rm -rf db.json
+        fi
         mv ${{ github.workspace }}/main/db.json ./db.json
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
