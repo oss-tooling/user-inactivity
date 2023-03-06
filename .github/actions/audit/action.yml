@@ -21,7 +21,6 @@ runs:
       with:
         ref: activity
         path: activity
-        repository: oss-tooling/user-inactivity
     - name: Stage db.json
       run: |
         if test -f "${{ github.workspace }}/activity/db.json"; then 
