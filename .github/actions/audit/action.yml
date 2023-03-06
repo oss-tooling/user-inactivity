@@ -46,15 +46,24 @@ runs:
         GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
         GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
         ORG: ${{ inputs.org }}
+    - name: Reconcile
+      run: node src/reconcile.js
+      working-directory: ${{ github.workspace }}/main
+      shell: bash
     - name: Update db.json
       run: |
         if test -f db.json; then 
           rm -rf db.json
         fi
+
+        mkdir -p backup_dbs
+        rm -rf backup_dbs/$(ls db-*)
+        mv db-* backup_dbs
+
         mv ${{ github.workspace }}/main/db.json ./db.json
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add db.json
+        git add db.json backup_dbs
         git commit -m 'adding latest audit entries'
         git push
       working-directory: ${{ github.workspace }}/activity
