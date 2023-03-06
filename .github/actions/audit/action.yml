@@ -46,5 +46,5 @@ runs:
       run: gh workflow run --repo ${{ github.repository }} $WORKFLOW_FILENAME
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ secrets.DEVOPS_BOT_PAT }}
+        GITHUB_TOKEN: ${{ inputs.DEVOPS_BOT_PAT }}
         WORKFLOW_FILENAME: contributions.yml
