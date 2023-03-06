@@ -1,17 +1,21 @@
 name: Fetch activity
 description: Fetches latest user activity via the audit log.
 
-inputs:
-  token:
-    description: The GitHub token to use
-    required: false
-    default: ${{ github.token }}
-  org: 
-    required: false
-    default: ${{ github.repository_owner }}
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      username:
+        description: 'A username passed from the caller workflow'
+        default: 'john-doe'
+        required: false
+        type: string
+    secrets:
+      token: 
+        description: Token used to execute next workflow
 
-runs:
-  using: composite
+jobs:
+  runs-on: ubuntu-latest 
   env:
     OUTFILE: /tmp/db.json
   steps:
