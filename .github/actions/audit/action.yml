@@ -6,7 +6,6 @@ inputs:
     default: /tmp/db.json
     required: false
     type: string
-secrets:
   APP_ID: 
     description: the app id
   APP_PRIVATE_KEY:
@@ -45,9 +44,9 @@ runs:
       working-directory: ${{ github.workspace }}/main
       shell: bash
       env:
-        GH_APP_ID: ${{ secrets.APP_ID }}
-        GH_APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-        GH_APP_INSTALLATION_ID: ${{ secrets.APP_INSTALLATION_ID }}
+        GH_APP_ID: ${{ inputs.APP_ID }}
+        GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
+        GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
     - name: Update db.json
       run: |
         rm -rf db.json
