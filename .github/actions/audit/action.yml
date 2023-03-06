@@ -22,12 +22,15 @@ runs:
         path: activity
     - name: Stage db.json
       run: mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
+      shell: bash
     - name: Install dependencies
       run: npm install
       working-directory: ${{ github.workspace }}/main
+      shell: bash
     - name: Collect Audit Log
       run: node src/audit.js && mv db.json ${{ inputs.path }}
       working-directory: ${{ github.workspace }}/main
+      shell: bash
     - name: Update db.json
       run: |
         rm -rf db.json
@@ -38,8 +41,10 @@ runs:
         git commit -m 'adding latest audit entries'
         git push
       working-directory: ${{ github.workspace }}/activity
+      shell: bash
     - name: Trigger Next Workflow
       run: gh workflow run --repo ${{ github.repository }} $WORKFLOW_FILENAME
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.DEVOPS_BOT_PAT }}
         WORKFLOW_FILENAME: contributions.yml
