@@ -11,7 +11,8 @@ secrets:
     description: the app id
   APP_PRIVATE_KEY:
     description: the app private key
-
+  APP_INSTALLATION_ID:
+    description: the app installation id
 runs:
   using: composite
   steps: 
@@ -43,6 +44,10 @@ runs:
       run: node src/audit.js && mv db.json ${{ inputs.path }}
       working-directory: ${{ github.workspace }}/main
       shell: bash
+      env:
+        GH_APP_ID: ${{ secrets.APP_ID }}
+        GH_APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+        GH_APP_INSTALLATION_ID: ${{ secrets.APP_INSTALLATION_ID }}
     - name: Update db.json
       run: |
         rm -rf db.json
