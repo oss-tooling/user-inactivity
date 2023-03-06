@@ -21,13 +21,15 @@ jobs:
     steps:
       - name: Cleanup Workspace
         uses: AutoModality/action-clean@v1
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: main
-      - uses: actions/checkout@v2
+          repository: oss-tooling/user-inactivity
+      - uses: actions/checkout@v3
         with:
           ref: activity
           path: activity
+          repository: oss-tooling/user-inactivity
       - name: Stage db.json
         run: [ -f ${{ github.workspace }}/activity/db.json ] && mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
       - name: Install dependencies
