@@ -1,6 +1,8 @@
 name: Fetch activity
 description: Inventory user activity
 inputs:
+  org:
+    description: the github organization to audit
   path:
     description: The file path to the database
     default: /tmp/db.json
