@@ -1,0 +1,37 @@
+name: Remove inactive users
+description: Remove users that have been inactive for over 90 days
+inputs:
+  org:
+    description: the github organization to audit
+  repo:
+    description: name of repo where inactive user issues are created
+  APP_ID:
+    description: the app id
+  APP_PRIVATE_KEY:
+    description: the app private key
+  APP_INSTALLATION_ID:
+    description: the app installation id
+runs:
+  using: composite
+  steps: 
+    - uses: actions/checkout@v3
+      with:
+        path: main
+        repository: oss-tooling/user-inactivity
+        ref: actions
+    
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{ github.workspace }}/main
+      shell: bash
+
+    - name: Remove inactive users
+      run: node src/kick.js
+      working-directory: ${{ github.workspace }}/main
+      shell: bash
+      env:
+        GH_APP_ID: ${{ inputs.APP_ID }}
+        GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
+        GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
+        ORG: ${{ inputs.org }}
+        REPO: ${{ inputs.repo }}
