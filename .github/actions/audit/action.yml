@@ -22,7 +22,7 @@ runs:
       with:
         path: main
         repository: oss-tooling/user-inactivity
-        ref: parameterized-since
+        ref: paramaterized-since
     
     - uses: actions/checkout@v3
       with:
