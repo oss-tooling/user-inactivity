@@ -5,7 +5,7 @@ const main = async () => {
   await utils.registerSecrets()
   const appClient = await utils.createGitHubAppClient()
   const client = await appClient.getInstallationOctokit(process.env.GH_APP_INSTALLATION_ID)
-  const since = await utils.getSince(Number(core.getInput('duration', { required: true })))
+  const since = await utils.getSince(20) //Number(core.getInput('duration', { required: true }))
   await client.inactiveUsers.audit(process.env.ORG, since)
 }
 
