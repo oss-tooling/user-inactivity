@@ -6,6 +6,9 @@ inputs:
   branch:
     description: branch to store activity data on
     default: main
+  duration:
+    description: how far back in the audit log to search
+    default: 7
   APP_ID:
     description: the app id
   APP_PRIVATE_KEY:

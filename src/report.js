@@ -10,7 +10,7 @@ const main = async () => {
   const org = process.env.ORG
   const repo = process.env.REPO
 
-  await utils.registerSecrets()
+  await utils.registerSecrets(Number(core.getInput('duration', { required: true })))
   const appClient = await utils.createGitHubAppClient()
   const client = await appClient.getInstallationOctokit(process.env.GH_APP_INSTALLATION_ID)
   await client.inactiveUsers.report(org, repo, notificationBody)
