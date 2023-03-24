@@ -50,4 +50,4 @@ runs:
         GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
         ORG: ${{ inputs.org }}
         REPO: ${{ inputs.repo }}
-        INACTIVITY_DURATION: ${{ inputs.inactivity-duration }}
+        INACTIVE_DURATION: ${{ inputs.inactivity-duration }}

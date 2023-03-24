@@ -50,7 +50,7 @@ runs:
         GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
         GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
         ORG: ${{ inputs.org }}
-        INACTIVITY_DURATION: ${{ inputs.inactivity-duration }}
+        INACTIVE_DURATION: ${{ inputs.inactivity-duration }}
     
     - name: Reconcile
       run: node src/reconcile.js
