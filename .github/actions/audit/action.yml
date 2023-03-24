@@ -6,6 +6,9 @@ inputs:
   branch:
     description: branch to store activity data on
     default: main
+  inactivity-duration:
+    description: the amount of days a user can be inactive for
+    default: 30
   APP_ID:
     description: the app id
   APP_PRIVATE_KEY:
@@ -47,6 +50,7 @@ runs:
         GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
         GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
         ORG: ${{ inputs.org }}
+        INACTIVITY_DURATION: ${{ inputs.inactivity-duration }}
     
     - name: Reconcile
       run: node src/reconcile.js
