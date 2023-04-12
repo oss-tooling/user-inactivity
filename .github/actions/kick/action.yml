@@ -21,7 +21,7 @@ runs:
       with:
         path: main
         repository: oss-tooling/user-inactivity
-        ref: v1.1.4
+        ref: outside-collaborators
     
     - name: Install dependencies
       run: npm install
