@@ -5,6 +5,9 @@ inputs:
     description: the github organization to audit
   repo:
     description: name of repo where inactive user issues are created
+  branch:
+    description: branch to store activity data on
+    default: main
   inactivity-duration:
     description: the amount of days a user can be inactive for
     default: 30
@@ -16,12 +19,24 @@ inputs:
     description: the app installation id
 runs:
   using: composite
-  steps: 
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.branch }}
+        path: activity
+    
     - uses: actions/checkout@v3
       with:
         path: main
         repository: oss-tooling/user-inactivity
         ref: outside-collaborators
+    
+    - name: Move db.json
+      run: |
+        if test -f "${{ github.workspace }}/activity/db.json"; then 
+          mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
+        fi
+      shell: bash
     
     - name: Install dependencies
       run: npm install
