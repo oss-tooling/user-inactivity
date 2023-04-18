@@ -29,7 +29,7 @@ runs:
       with:
         path: main
         repository: oss-tooling/user-inactivity
-        ref: outside-collaborators
+        ref: v1.1.5
     
     - name: Move db.json
       run: |
