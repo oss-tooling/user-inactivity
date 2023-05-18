@@ -59,15 +59,10 @@ runs:
         fi
 
         mv ${{ github.workspace }}/main/db.json ./db.json
-        mv ${{ github.workspace }}/main/db-*.json .
-
-        mkdir -p backup_dbs
-        rm -rf backup_dbs/$(ls db-* 2> /dev/null)
-        mv db-* backup_dbs
 
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add db.json backup_dbs
+        git add db.json
         git commit -m "adding audit entries for $(date "+%m-%d-%Y")"
         git push
       working-directory: ${{ github.workspace }}/activity

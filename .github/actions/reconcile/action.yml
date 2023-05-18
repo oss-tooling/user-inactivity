@@ -50,11 +50,7 @@ runs:
     
     - name: Update db.json
       run: |
-        if test -f db.json; then 
-          rm -rf db.json
-        fi
 
-        mv ${{ github.workspace }}/main/db.json ./db.json
         mv ${{ github.workspace }}/main/db-*.json .
 
         mkdir -p backup_dbs
@@ -64,7 +60,7 @@ runs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add db.json backup_dbs
-        git commit -m "adding audit entries for $(date "+%m-%d-%Y")"
+        git commit -m "reconciliation backup for $(date "+%m-%d-%Y")"
         git push
       working-directory: ${{ github.workspace }}/activity
       shell: bash
