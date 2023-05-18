@@ -1,0 +1,70 @@
+name: Reconcile Users
+description: Reconcile user activity
+inputs:
+  org:
+    description: the github organization to audit
+  branch:
+    description: branch to store activity data on
+    default: main
+  inactivity-duration:
+    description: the amount of days a user can be inactive for
+    default: 30
+  APP_ID:
+    description: the app id
+  APP_PRIVATE_KEY:
+    description: the app private key
+  APP_INSTALLATION_ID:
+    description: the app installation id
+runs:
+  using: composite
+  steps: 
+    - uses: actions/checkout@v3
+      with:
+        path: main
+        repository: oss-tooling/user-inactivity
+        ref: v1.1.6
+    
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.branch }}
+        path: activity
+    
+    - name: Stage db.json
+      run: |
+        if test -f "${{ github.workspace }}/activity/db.json"; then 
+          mv ${{ github.workspace }}/activity/db.json ${{ github.workspace }}/main/db.json
+        fi
+      shell: bash
+    
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{ github.workspace }}/main
+      shell: bash
+    
+    - name: Reconcile
+      run: node src/reconcile.js
+      working-directory: ${{ github.workspace }}/main
+      shell: bash
+      env: 
+        INACTIVE_DURATION: ${{ inputs.inactivity-duration }}
+    
+    - name: Update db.json
+      run: |
+        if test -f db.json; then 
+          rm -rf db.json
+        fi
+
+        mv ${{ github.workspace }}/main/db.json ./db.json
+        mv ${{ github.workspace }}/main/db-*.json .
+
+        mkdir -p backup_dbs
+        rm -rf backup_dbs/$(ls db-* 2> /dev/null)
+        mv db-* backup_dbs
+
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add db.json backup_dbs
+        git commit -m "adding audit entries for $(date "+%m-%d-%Y")"
+        git push
+      working-directory: ${{ github.workspace }}/activity
+      shell: bash
