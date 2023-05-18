@@ -52,13 +52,6 @@ runs:
         ORG: ${{ inputs.org }}
         INACTIVE_DURATION: ${{ inputs.inactivity-duration }}
     
-    - name: Reconcile
-      run: node src/reconcile.js
-      working-directory: ${{ github.workspace }}/main
-      shell: bash
-      env: 
-        INACTIVE_DURATION: ${{ inputs.inactivity-duration }}
-    
     - name: Update db.json
       run: |
         if test -f db.json; then 
