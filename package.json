@@ -1,5 +1,7 @@
 {
   "private": true,
+  "name": "github-user-inactivity",
+  "version": "1.1.7",
   "scripts": {
     "lint": "prettier --check . && eslint .",
     "lint:fix": "prettier --write . && eslint --fix .",
